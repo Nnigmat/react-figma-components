@@ -1,10 +1,11 @@
-import React, { useRef, FC } from 'react';
+import React, { useRef, FC, HTMLProps } from 'react';
 import cn from 'classnames';
 import { VisuallyHidden } from 'react-aria';
-import { useCheckbox, useHover } from 'web-platform-alpha';
+import { useCheckbox, useHover, CommonCheckboxProps } from 'web-platform-alpha';
 
-import { CheckboxProps } from '../../index';
 import './Checkbox.css';
+
+export type CheckboxProps = CommonCheckboxProps & HTMLProps<HTMLInputElement>;
 
 export const Checkbox: FC<CheckboxProps> = (props) => {
   const { children, className, ...restProps } = props;
@@ -13,8 +14,6 @@ export const Checkbox: FC<CheckboxProps> = (props) => {
   const { isPressed, rootProps, inputProps } = useCheckbox(restProps, inputRef);
   const { disabled, checked } = inputProps;
   const { isHovered, hoverProps } = useHover(props);
-
-  console.log(inputProps);
 
   return (
     <label
