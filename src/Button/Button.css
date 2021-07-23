@@ -1,0 +1,126 @@
+.button {
+  display: flex;
+  align-items: center;
+  border-radius: var(--border-radius-large);
+  color: var(--white);
+  flex-shrink: 0;
+  font-family: var(--font-stack);
+  font-size: var(--font-size-xsmall);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--font-letter-spacing-neg-small);
+  line-height: var(--font-line-height);
+  height: var(--size-medium);
+  padding: 0 var(--size-xsmall) 0 var(--size-xsmall);
+  text-decoration: none;
+  outline: none;
+  border: 2px solid transparent;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.button.button__primary {
+  background-color: var(--blue);
+}
+
+.button.button__primary:enabled:active,
+.button.button__primary:enabled:focus {
+  border: 2px solid var(--black3);
+}
+
+.button.button__primary:disabled {
+  background-color: var(--black3);
+}
+
+.button.button__primary.button__destructive {
+  background-color: var(--red);
+}
+
+.button.button__primary.button__destructive:enabled:active,
+.button__primary.button__destructive:enabled:focus {
+  border: 2px solid var(--black3);
+}
+
+.button.button__primary.button__destructive:disabled {
+  opacity: 0.3;
+}
+
+.button.button__secondary,
+.button.button__secondary.button__destructive {
+  background-color: var(--white);
+  border: 1px solid var(--black8);
+  color: var(--black8);
+  padding: 0 calc(var(--size-xsmall) + 1px) 0 calc(var(--size-xsmall) + 1px);
+  letter-spacing: var(--font-letter-spacing-pos-small);
+}
+
+.button.button__secondary:enabled:active,
+.button.button__secondary.button__destructive:enabled:active,
+.button.button__secondary:enabled:focus,
+.button.button__secondary.button__destructive:enabled:focus {
+  border: 2px solid var(--blue);
+  padding: 0 var(--size-xsmall) 0 var(--size-xsmall);
+}
+
+.button.button__secondary:disabled,
+.button.button__secondary.button__destructive:disabled {
+  border: 1px solid var(--black3);
+  color: var(--black3);
+}
+
+.button.button__secondary.button__destructive {
+  border-color: var(--red);
+  color: var(--red);
+}
+
+.button.button__secondary.button__destructive:disabled {
+  background-color: var(--white);
+}
+
+.button.button__secondary.button__destructive:enabled:active,
+.button.button__secondary.button__destructive:enabled:focus {
+  border: 2px solid var(--red);
+  padding: 0 var(--size-xsmall) 0 var(--size-xsmall);
+}
+
+.button.button__secondary.button__destructive:disabled {
+  border: 1px solid var(--red);
+  background-color: var(--white);
+  color: var(--red);
+  opacity: 0.4;
+}
+
+.button.button__tertiary,
+.button.button__tertiary.button__destructive {
+  border: 1px solid transparent;
+  color: var(--blue);
+  background-color: transparent;
+  padding: 0;
+  font-weight: var(--font-weight-normal);
+  letter-spacing: var(--font-letter-spacing-pos-small);
+  cursor: pointer;
+}
+
+.button.button__tertiary:enabled:focus,
+.button.button__tertiary.button__destructive:enabled:focus {
+  text-decoration: underline;
+}
+
+.button.button__tertiary:disabled,
+.button.button__tertiary.button__destructive:disabled {
+  cursor: default;
+  color: var(--black3);
+}
+
+.button.button__tertiary.button__destructive {
+  color: var(--red);
+}
+
+.button.button__tertiary.button__destructive:enabled:focus {
+  text-decoration: underline;
+}
+
+.button.button__tertiary.button__destructive:disabled {
+  opacity: 0.4;
+}
