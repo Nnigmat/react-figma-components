@@ -1,11 +1,10 @@
 .switch {
   align-items: center;
-  cursor: default;
+  cursor: pointer;
   display: flex;
   height: var(--size-medium);
   position: relative;
 
-  align-items: center;
   color: var(--black8);
   display: flex;
   font-family: var(--font-stack);
@@ -36,9 +35,10 @@
   background-color: var(--black);
 }
 
-.switch.swtich__disabled {
+.switch.switch__disabled {
   color: var(--black);
   opacity: 0.3;
+	cursor: default;
 }
 
 .switch:before {
@@ -50,7 +50,6 @@
   height: 10px;
   left: 8px;
   position: absolute;
-  top: 10px;
   transition: background-color 0 0.2s;
   width: 22px;
 }
@@ -64,7 +63,6 @@
   height: 10px;
   left: 8px;
   position: absolute;
-  top: 10px;
   transition: transform 0.2s;
   width: 10px;
 }

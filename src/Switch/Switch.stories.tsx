@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { Checkbox } from '.';
+import { Switch } from '.';
 import { Story } from '@storybook/react/types-6-0';
 
 export default {
-  title: 'Components/Checkbox',
-  component: Checkbox,
+  title: 'Components/Switch',
+  component: Switch,
   argTypes: {
     disabled: {
       control: { type: 'boolean' },
@@ -20,8 +20,8 @@ export const Base: Story = ({ children = 'Toggle Me', ...args }) => {
   const handleChange = () => setChecked((prev) => !prev);
 
   return (
-    <Checkbox {...args} checked={checked} onChange={handleChange}>
+    <Switch {...args} checked={checked} onChange={handleChange}>
       {children}
-    </Checkbox>
+    </Switch>
   );
 };

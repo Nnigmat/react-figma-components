@@ -1,7 +1,8 @@
 export * from './Button';
 export * from './Checkbox';
 export * from './Switch';
-import Disclosure from './Disclosure';
+export * from './Radio';
+export * from './Disclosure';
 import Input from './Input';
 import Icon from './Icon';
 import Title from './Title';
@@ -13,4 +14,4 @@ import Select from './Select';
 
 import './globals.css';
 
-export { Disclosure, Input, Icon, Title, Label, Text, Tip, Textarea, Select };
+export { Input, Icon, Title, Label, Text, Tip, Textarea, Select };

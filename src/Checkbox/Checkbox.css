@@ -1,6 +1,6 @@
 .checkbox {
   align-items: center;
-  cursor: default;
+  cursor: pointer;
   display: flex;
   height: var(--size-medium);
   position: relative;
@@ -33,6 +33,7 @@
 .checkbox.checkbox__disabled {
   color: var(--black);
   opacity: 0.3;
+	cursor: default;
 }
 
 .checkbox.checkbox__checked:before {
