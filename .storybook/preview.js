@@ -9,12 +9,21 @@ export const parameters = {
       date: /Date$/,
     },
   },
+  backgrounds: { 
+    default: 'figma',
+    values: [
+      {
+        name: 'figma',
+        value: 'rgba(0,0,0,0.03)'
+      }
+    ]
+  }
 }
 
 export const decorators = [
-	(Story) => (
-		<div style={{ margin: '30px' }}>
-			<Story />
-		</div>
-	)
+  (Story) => (
+    <div style={{ margin: '30px'}}>
+      <Story />
+    </div>
+  )
 ]

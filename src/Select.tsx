@@ -2,9 +2,7 @@ import React, { useEffect, useState } from 'react';
 import cn from 'classnames';
 import OutsideClickHandler from 'react-outside-click-handler';
 
-import { SelectProps } from '../index';
-
-const Select: React.FunctionComponent<SelectProps> = ({
+const Select: React.FunctionComponent<any> = ({
   className = '',
   options,
   placeholder,
