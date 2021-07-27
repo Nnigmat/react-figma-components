@@ -1,4 +1,4 @@
-import { FC, createElement, HTMLProps } from 'react';
+import React, { FC, createElement, HTMLProps } from 'react';
 import cn from 'classnames';
 
 import './Title.css';

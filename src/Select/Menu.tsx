@@ -1,4 +1,4 @@
-import { forwardRef, useRef, FC } from 'react';
+import React, { forwardRef, useRef, FC } from 'react';
 import cn from 'classnames';
 import { useHover, useForkRef, UseHoverProps } from 'web-platform-alpha';
 

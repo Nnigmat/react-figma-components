@@ -1,4 +1,4 @@
-import { HTMLProps, FC } from 'react';
+import React, { HTMLProps, FC } from 'react';
 import cn from 'classnames';
 
 import './Text.css';

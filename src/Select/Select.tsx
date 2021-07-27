@@ -1,4 +1,4 @@
-import { FC, useRef, useEffect, useState, ReactNode } from 'react';
+import React, { FC, useRef, useEffect, useState, ReactNode } from 'react';
 import cn from 'classnames';
 import { useButton } from 'web-platform-alpha';
 

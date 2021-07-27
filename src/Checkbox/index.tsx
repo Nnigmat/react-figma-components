@@ -1,4 +1,4 @@
-import { useRef, FC, HTMLProps } from 'react';
+import React, { useRef, FC, HTMLProps } from 'react';
 import cn from 'classnames';
 import { VisuallyHidden } from 'react-aria';
 import { useCheckbox, CommonCheckboxProps } from 'web-platform-alpha';

@@ -1,4 +1,4 @@
-import { FC, useRef } from 'react';
+import React, { FC, useRef } from 'react';
 import cn from 'classnames';
 import {
   useAutoResize,

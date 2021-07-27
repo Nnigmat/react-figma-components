@@ -1,4 +1,4 @@
-import { FC, useRef, HTMLProps } from 'react';
+import React, { FC, useRef, HTMLProps } from 'react';
 import cn from 'classnames';
 import { VisuallyHidden } from 'react-aria';
 import { CommonToggleProps, useToggle } from 'web-platform-alpha';
@@ -37,39 +37,3 @@ export const Disclosure: FC<DisclosureProps> = (props) => {
     </div>
   );
 };
-
-// const Disclosure: React.FunctionComponent<DisclosureProps> = ({
-//   defaultExpanded,
-//   className,
-//   label,
-//   children,
-//   section,
-//   onExpand,
-// }) => {
-//   const [isExpanded, onExpandedStateChange] = useState(
-//     Boolean(defaultExpanded)
-//   );
-//   const toggleExapndState = () => {
-//     onExpand?.(!isExpanded);
-//     onExpandedStateChange(!isExpanded);
-//   };
-
-//   const labelClass = section ? 'disclosure--section' : '';
-//   const expandClass = isExpanded ? 'disclosure--expanded' : '';
-
-//   return (
-//     <div className={cn('disclosure', className)}>
-//       <div className={cn('disclosure__item', expandClass)}>
-//         <div
-//           className={cn('disclosure__label', labelClass)}
-//           onClick={toggleExapndState}
-//         >
-//           {label}
-//         </div>
-//         <div className="disclosure__content">{children}</div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Disclosure;
