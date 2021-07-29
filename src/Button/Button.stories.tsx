@@ -1,3 +1,4 @@
+import React from 'react';
 import { Button } from '.';
 import { Story } from '@storybook/react/types-6-0';
 

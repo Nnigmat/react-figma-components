@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Radio } from '.';
 import { Story } from '@storybook/react/types-6-0';
 

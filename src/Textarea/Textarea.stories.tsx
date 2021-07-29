@@ -1,4 +1,4 @@
-import { FC, useState, useCallback, ChangeEvent } from 'react';
+import React, { FC, useState, useCallback, ChangeEvent } from 'react';
 import { Textarea } from './';
 import { Story } from '@storybook/react/types-6-0';
 

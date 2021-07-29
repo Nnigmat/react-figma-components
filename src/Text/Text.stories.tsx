@@ -1,3 +1,4 @@
+import React from 'react';
 import { Text } from '.';
 import { Story } from '@storybook/react/types-6-0';
 
