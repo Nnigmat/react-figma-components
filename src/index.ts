@@ -9,6 +9,7 @@ export * from './Title';
 export * from './Text';
 export * from './Input';
 export * from './Icon';
+export * from './IconButton';
 export * from './Lable';
 export * from './Textarea';
 export * from './Select';

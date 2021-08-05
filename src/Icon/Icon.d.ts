@@ -1,6 +1,6 @@
 import { HTMLProps } from 'react';
 
-export type Icons =
+export type IconType =
   | 'adjust'
   | 'alert'
   | 'angle'
@@ -107,7 +107,7 @@ export type IconProps = HTMLProps<HTMLDivElement> & {
   /**
    * Icon's name
    */
-  name: Icons;
+  name: IconType;
 
   /**
    * Icon's color
