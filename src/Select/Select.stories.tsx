@@ -10,6 +10,9 @@ export default {
     disabled: {
       control: { type: 'boolean' },
     },
+    multiple: {
+      control: { type: 'boolean' },
+    },
     checked: {
       table: { disable: true },
     },

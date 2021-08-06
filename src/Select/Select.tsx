@@ -15,31 +15,31 @@ type Item = {
 export type SelectProps = {
   className?: string;
   children?: ReactNode;
-  onChange?: (selected: Item) => void;
+  onChange?: (selected: Item[]) => void;
   disabled?: boolean;
+  multiple?: boolean;
 };
 
 export const Select: FC<SelectProps> = (props) => {
-  const [prevSelected, setPrevSelected] = useState<Item>();
   const { className, onChange, disabled, ...restProps } = props;
   const buttonRef = useRef<HTMLButtonElement>(null);
   const state = useSelectState(restProps);
+  const { selected } = state;
   const { triggerProps, menuProps } = useSelect(restProps, state);
   // @ts-ignore
   const { buttonProps } = useButton({ ...triggerProps, disabled }, buttonRef);
 
   useEffect(() => {
-    if (state.selected.value !== prevSelected?.value) {
-      onChange?.(state.selected);
-      setPrevSelected(state.selected);
-    }
-  }, [state, onChange, prevSelected]);
+    onChange?.(selected);
+  }, [selected, onChange]);
+
+  const label = selected.map(({ option }) => option).join(', ');
 
   return (
     <div className={cn('select-menu', className)}>
       <button {...buttonProps} className="select-menu__button">
         <span className="select-menu__label">
-          {state.selected.option ?? 'Select option'}
+          {Boolean(label) ? label : 'Select option'}
         </span>
         <span className="select-menu__caret" />
       </button>

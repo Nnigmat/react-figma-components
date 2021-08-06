@@ -2,13 +2,15 @@ import { KeyboardEventHandler, useState } from 'react';
 import { useUniqId } from './useUniqId';
 
 export function useSelectState(props: any) {
-  const { children } = props;
+  const { children, multiple } = props;
+  const selectedIndexDefault = Array(children.length).fill(false);
+
   const [isOpened, setOpened] = useState(false);
-  const [selected, setSelected] = useState<{ option: any; value: any }>(
-    {} as any
+  const [selected, setSelected] = useState<{ option: any; value: any }[]>(
+    [] as any
   );
   const [focusedIndex, setFocusedIndex] = useState(-1);
-  const [selectedIndex, setSelectedIndex] = useState(-1);
+  const [selectedIndex, setSelectedIndex] = useState(selectedIndexDefault);
 
   const total = children.length - 1;
   const $collection = children.map((child: any, index: any) => {
@@ -29,8 +31,10 @@ export function useSelectState(props: any) {
       setOpened(!isOpened);
     },
     setOpened: () => {
+      const firstSelected = selectedIndex.indexOf(true);
+
       setOpened(true);
-      setFocusedIndex(selectedIndex > 0 ? selectedIndex : 0);
+      setFocusedIndex(firstSelected > 0 ? firstSelected : 0);
     },
     setClosed: () => {
       setOpened(false);
@@ -45,26 +49,58 @@ export function useSelectState(props: any) {
       setFocusedIndex(next < 0 ? total : next);
     },
     select: (index?: number) => {
+      if (!multiple) {
+        if (index !== undefined) {
+          setSelectedIndex(
+            selectedIndex.map((el, i) => (i === index ? !el : false))
+          );
+          setFocusedIndex(index);
+        } else {
+          setSelectedIndex(
+            selectedIndex.map((el, i) => (i === focusedIndex ? !el : false))
+          );
+        }
+
+        const target = $collection[index ?? focusedIndex];
+
+        setSelected([
+          {
+            value: target.value,
+            option: target.children,
+          },
+        ]);
+
+        setOpened(false);
+
+        return;
+      }
+
       if (index !== undefined) {
-        setSelectedIndex(index);
+        setSelectedIndex(
+          selectedIndex.map((el, i) => (i === index ? !el : el))
+        );
         setFocusedIndex(index);
       } else {
-        setSelectedIndex(focusedIndex);
+        setSelectedIndex(
+          selectedIndex.map((el, i) => (i === focusedIndex ? !el : el))
+        );
       }
 
       const target = $collection[index ?? focusedIndex];
 
-      setSelected({
-        value: target.value,
-        option: target.children,
-      });
-      setOpened(false);
+      // If `target.value` in selected array -> remove it
+      // Otherwise -> add to the selected array
+      setSelected((prev) =>
+        prev.some(({ value }) => value === target.value)
+          ? prev.filter(({ value }) => value !== target.value)
+          : [...prev, { value: target.value, option: target.children }]
+      );
     },
     isFocused: (index: number) => {
       return focusedIndex === index;
     },
     isSelected: (index: number) => {
-      return selectedIndex === index;
+      return selectedIndex[index];
     },
   };
 }
