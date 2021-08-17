@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Story } from '@storybook/react/types-6-0';
 
 import { Select, Item, Divider } from './';
@@ -23,9 +23,17 @@ export default {
 };
 
 export const Base: Story = (args) => {
-  const handleChange = console.log;
+  const [selected, setSelected] = useState([
+    { option: 'Element 1', value: 'element 1' },
+  ]);
+
+  const handleChange = (selected) => {
+    setSelected(selected);
+    console.log(selected);
+  };
+
   return (
-    <Select {...args} onChange={handleChange}>
+    <Select {...args} selected={selected} onChange={handleChange}>
       <Item value="element 1">Element 1</Item>
       <Item value="element 2">Element 2</Item>
       <Divider />

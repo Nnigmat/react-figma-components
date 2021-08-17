@@ -1,26 +1,58 @@
-import { KeyboardEventHandler, useState } from 'react';
+import {
+  KeyboardEventHandler,
+  useState,
+  useEffect,
+  ReactNode,
+  Children,
+} from 'react';
 import { useUniqId } from './useUniqId';
 
-export function useSelectState(props: any) {
-  const { children, multiple } = props;
-  const selectedIndexDefault = Array(children.length).fill(false);
+export type SelectOption = {
+  option?: any;
+  value: any;
+};
+
+export type UseSelectStateProps = {
+  children: ReactNode;
+  multiple?: boolean;
+  selected: SelectOption[];
+  onChange: (selected: SelectOption[]) => void;
+};
+
+export function useSelectState(props: UseSelectStateProps) {
+  const { children, multiple = false, selected, onChange: setSelected } = props;
+  const selectedIndexDefault = Array(Children.count(children)).fill(false);
 
   const [isOpened, setOpened] = useState(false);
-  const [selected, setSelected] = useState<{ option: any; value: any }[]>(
-    [] as any
-  );
   const [focusedIndex, setFocusedIndex] = useState(-1);
   const [selectedIndex, setSelectedIndex] = useState(selectedIndexDefault);
 
-  const total = children.length - 1;
-  const $collection = children.map((child: any, index: any) => {
-    return {
-      key: index,
-      index,
-      value: child.props.value,
-      children: child.props.children,
-    };
-  });
+  const total = Children.count(children) - 1;
+  const $collection =
+    Children.map(children, (child: any, index: any) => {
+      return {
+        key: index,
+        index,
+        value: child.props.value,
+        children: child.props.children,
+      };
+    }) || [];
+
+  useEffect(() => {
+    if (!selected) {
+      return;
+    }
+
+    $collection.forEach(({ value }, index) => {
+      if (selected.some(({ value: _value }) => value === _value)) {
+        setSelectedIndex((prev) => {
+          const copy = [...prev];
+          copy[index] = true;
+          return copy;
+        });
+      }
+    });
+  }, [selected]);
 
   return {
     collection: $collection,
@@ -90,10 +122,10 @@ export function useSelectState(props: any) {
 
       // If `target.value` in selected array -> remove it
       // Otherwise -> add to the selected array
-      setSelected((prev) =>
-        prev.some(({ value }) => value === target.value)
-          ? prev.filter(({ value }) => value !== target.value)
-          : [...prev, { value: target.value, option: target.children }]
+      setSelected(
+        selected.some(({ value }) => value === target.value)
+          ? selected.filter(({ value }) => value !== target.value)
+          : [...selected, { value: target.value, option: target.children }]
       );
     },
     isFocused: (index: number) => {
