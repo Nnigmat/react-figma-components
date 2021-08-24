@@ -1,8 +1,9 @@
 import React from 'react';
 import { Icon } from '.';
+import { IconType } from './Icon.d';
 import { Story } from '@storybook/react/types-6-0';
 
-const icons = [
+const icons: IconType[] = [
   'adjust',
   'alert',
   'angle',
@@ -127,4 +128,45 @@ export default {
 export const Base: Story = ({ ...args }) => {
   // @ts-ignore
   return <Icon {...args} />;
+};
+
+export const All: Story = ({ ...args }) => {
+  return (
+    <>
+      <style>
+        {`
+        .Icons {
+          display: flex;
+          flex-wrap: wrap;
+        }
+
+        .IconWrapper {
+          flex: 0 0 50px;
+        }
+
+        .IconWrapper:hover .Tooltip {
+          display:block;
+        }
+      
+        .Tooltip {
+          display: none;
+          position: absolute;
+          z-index: 1000;
+          background: #0e1111;
+          padding: 6px;
+          border-radius: 2px;
+          color: white;
+        }
+        `}
+      </style>
+      <div className="Icons">
+        {icons.map((name) => (
+          <div className="IconWrapper">
+            <Icon {...args} name={name} />
+            <span className="Tooltip">{name}</span>
+          </div>
+        ))}
+      </div>
+    </>
+  );
 };
